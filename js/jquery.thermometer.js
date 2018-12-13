@@ -241,7 +241,7 @@
 			tickColour: '#000000',
 			liquidColour: "#ff0000",
 			animationSpeed: 1000,
-			pathToSVG: "/svg/thermo-bottom.svg",
+			pathToSVG: "svg/thermo-bottom.svg",
 			valueChanged: undefined,
 			onLoad: undefined
 		}
