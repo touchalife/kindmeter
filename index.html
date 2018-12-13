@@ -122,14 +122,16 @@
       $(document).ready(function() {
         init();
         var args = getUrlParams();
-
-        if (!args || args.show == "demo") {
+        console.log(args);
+        if (args.show && args.show == "live") {
+          // Meter is live...
+          console.log("Meter is live.");
+        } else {
+          console.log("Meter is demo.");
           window.setInterval(function() {
             var m = Math.random() * 25000;
             $("#fixture").thermometer("setValue", m);
           }, 2000);
-        } else {
-          console.log("Show live..");
         }
       });
     </script>
