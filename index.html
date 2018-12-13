@@ -1,160 +1,137 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>[ Kindness Meter ]</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
     <style type="text/css">
-        *,
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
+      *,
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
 
-        .screen-wrapper {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            bottom: 0px;
-            right: 0px;
-            /* background: url('https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg') no-repeat center center fixed; */
-            background: linear-gradient(to right, rgba(0, 0, 10, 0.6), rgba(0, 0, 0, 0.2)), url('https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg') no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+      .screen-wrapper {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        /* background: url('https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg') no-repeat center center fixed; */
+        background: linear-gradient(
+            to right,
+            rgba(0, 0, 10, 0.6),
+            rgba(0, 0, 0, 0.2)
+          ),
+          url("https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg")
+            no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
 
-        #fixture {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            bottom: 0px;
-            right: 0px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
+      #fixture {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
 
-        #fixture div {
-            /* margin: 0 auto; */
-        }
+      /* #fixture div {
+        margin: 0 auto;
+      } */
 
-        svg {
-            /* border: 2px solid blue; */
-            margin: 0 auto;
-            display: block;
-            height: 100%;
-        }
+      svg {
+        /* border: 2px solid blue; */
+        margin: 0 auto;
+        display: block;
+        height: 100%;
+      }
 
-        #value {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            text-align: center;
-            color: white;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 5em;
-            text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
-        }
+      #value {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+        color: white;
+        font-family: "Open Sans", sans-serif;
+        font-size: 5em;
+        text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
+      }
 
-        #logo {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            text-align: left;
-            padding: 15px;
-            /* background: rgba(0, 0, 0, 0.5); */
-        }
+      #logo {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        text-align: left;
+        padding: 15px;
+        /* background: rgba(0, 0, 0, 0.5); */
+      }
 
-        #paypal-logo {
-            position: absolute;
-            bottom: 5px;
-            left: 0px;
-            right: 0px;
-            /* border: 1px solid white; */
-            text-align: left;
-            padding-left: 60px;
-            color: white;
-        }
+      #paypal-logo {
+        position: absolute;
+        bottom: 5px;
+        left: 0px;
+        right: 0px;
+        /* border: 1px solid white; */
+        text-align: left;
+        padding-left: 60px;
+        color: white;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="screen-wrapper"></div>
     <h2 id="value"></h2>
     <div id="fixture"></div>
     <div id="logo">
-        <img src="https://touchalife.org/wp-content/uploads/2018/01/touch-a-life-foundation-1.png" alt="">
+      <img
+        src="https://touchalife.org/wp-content/uploads/2018/01/touch-a-life-foundation-1.png"
+        alt=""
+      />
     </div>
     <div id="paypal-logo">
-        <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" width="150">
+      <img
+        src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg"
+        width="150"
+      />
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.pubnub.com/pubnub-3.7.16.min.js" type="text/javascript" charset="utf-8"></script>
+    <script
+      src="https://cdn.pubnub.com/pubnub-3.7.16.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
 
     <script type="text/javascript" src="js/jquery.thermometer.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript">
-        function RGB2HTML(red, green, blue) {
-            var decColor = 0x1000000 + blue + 0x100 * green + 0x10000 * red;
-            return '#' + decColor.toString(16).substr(1);
+      $(document).ready(function() {
+        init();
+        var args = getUrlParams();
+
+        if (!args || args.show == "demo") {
+          window.setInterval(function() {
+            var m = Math.random() * 25000;
+            $("#fixture").thermometer("setValue", m);
+          }, 2000);
+        } else {
+          console.log("Show live..");
         }
-
-
-        $(document).ready(function () {
-            var App = {};
-            App.start_value = 0;
-            App.goal_value = 25000;
-
-            $('#fixture').thermometer({
-                startValue: 100,
-                height: '100%',
-                width: '1000',
-                bottomText: "",
-                topText: "",
-                animationSpeed: 1000,
-                maxValue: App.goal_value,
-                minValue: 100,
-                textColour: '#fff',
-                // tickColour: '#fff',
-                liquidColour: function (value) {
-                    var grn = ~~(value / App.goal_value * 255);
-                    var red = ~~((App.goal_value - value) / App.goal_value * 255);
-                    return RGB2HTML(red, grn, 0);
-                },
-                valueChanged: function (value) {
-                    $('#value').text("$" + value.toFixed(2));
-                }
-            });
-
-            window.setInterval(function () {
-                var m = Math.random() * 25000;
-                $('#fixture').thermometer('setValue', m);
-            }, 2000);
-
-            var pubnub = PUBNUB.init({
-                publish_key: 'pub-c-1b29544e-6e89-44c6-8163-a6fd0e9302f1',
-                subscribe_key: 'sub-c-79af275c-b112-11e8-8ee3-1e33c3063db8',
-                ssl: true
-            });
-
-            pubnub.subscribe({
-                channel: "touch_a_life",
-                message: function (m) {
-                    console.log("GOT NOTIFICATION - > " + JSON.stringify(m));
-                },
-            });
-
-
-        });
+      });
     </script>
-
-</body>
-
+  </body>
 </html>
