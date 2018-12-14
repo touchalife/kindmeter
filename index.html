@@ -1,139 +1,125 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>[ Kindness Meter ]</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
-      rel="stylesheet"
-    />
-    <style type="text/css">
-      *,
-      body {
-        font-family: "Open Sans", sans-serif;
-      }
 
-      .screen-wrapper {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-        /* background: url('https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg') no-repeat center center fixed; */
-        background: linear-gradient(
-            to right,
-            rgba(0, 0, 10, 0.6),
-            rgba(0, 0, 0, 0.2)
-          ),
-          url("https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg")
-            no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-      }
+<head>
+  <title>[ Kindness Meter ]</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+  <style type="text/css">
+    *,
+    body {
+      font-family: "Open Sans", sans-serif;
+    }
 
-      #fixture {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-      }
+    .screen-wrapper {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      /* background: url('https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg') no-repeat center center fixed; */
+      background: linear-gradient(to right,
+        rgba(0, 0, 10, 0.6),
+        rgba(0, 0, 0, 0.2)),
+        url("https://touchalife.org/wp-content/themes/vantage/slider/backgrounds/tal-b2.jpg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
 
-      /* #fixture div {
+    #fixture {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* #fixture div {
         margin: 0 auto;
       } */
 
-      svg {
-        /* border: 2px solid blue; */
-        margin: 0 auto;
-        display: block;
-        height: 100%;
+    .asvg {
+      /* border: 2px solid blue; */
+      margin: 0 auto;
+      display: block;
+      /* height: 100%; */
+    }
+
+    #value {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      text-align: center;
+      color: white;
+      font-family: "Open Sans", sans-serif;
+      font-size: 5em;
+      text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    #logo {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      text-align: left;
+      padding: 15px;
+      /* background: rgba(0, 0, 0, 0.5); */
+    }
+
+    #paypal-logo {
+      position: absolute;
+      bottom: 5px;
+      left: 0px;
+      right: 0px;
+      /* border: 1px solid white; */
+      text-align: left;
+      padding-left: 60px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="screen-wrapper"></div>
+  <h2 id="value"></h2>
+  <div id="fixture"></div>
+  <div id="logo">
+    <img src="https://touchalife.org/wp-content/uploads/2018/01/touch-a-life-foundation-1.png" alt="" width="205" />
+  </div>
+  <div id="paypal-logo">
+    <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" width="100" />
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.pubnub.com/pubnub-3.7.16.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <script type="text/javascript" src="js/jquery.thermometer.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      init();
+      var args = getUrlParams();
+      console.log(args);
+      if (args.show && args.show == "live") {
+        // Meter is live...
+        console.log("Meter is live.");
+      } else {
+        console.log("Meter is demo.");
+        window.setInterval(function () {
+          var m = Math.random() * 25000;
+          $("#fixture").thermometer("setValue", m);
+        }, 2000);
       }
+    });
+  </script>
+</body>
 
-      #value {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        text-align: center;
-        color: white;
-        font-family: "Open Sans", sans-serif;
-        font-size: 5em;
-        text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
-      }
-
-      #logo {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        text-align: left;
-        padding: 15px;
-        /* background: rgba(0, 0, 0, 0.5); */
-      }
-
-      #paypal-logo {
-        position: absolute;
-        bottom: 5px;
-        left: 0px;
-        right: 0px;
-        /* border: 1px solid white; */
-        text-align: left;
-        padding-left: 60px;
-        color: white;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="screen-wrapper"></div>
-    <h2 id="value"></h2>
-    <div id="fixture"></div>
-    <div id="logo">
-      <img
-        src="https://touchalife.org/wp-content/uploads/2018/01/touch-a-life-foundation-1.png"
-        alt=""
-      />
-    </div>
-    <div id="paypal-logo">
-      <img
-        src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg"
-        width="150"
-      />
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script
-      src="https://cdn.pubnub.com/pubnub-3.7.16.min.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-
-    <script type="text/javascript" src="js/jquery.thermometer.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        init();
-        var args = getUrlParams();
-        console.log(args);
-        if (args.show && args.show == "live") {
-          // Meter is live...
-          console.log("Meter is live.");
-        } else {
-          console.log("Meter is demo.");
-          window.setInterval(function() {
-            var m = Math.random() * 25000;
-            $("#fixture").thermometer("setValue", m);
-          }, 2000);
-        }
-      });
-    </script>
-  </body>
 </html>

@@ -52,7 +52,7 @@ function init() {
     $("#fixture").thermometer({
         startValue: 100,
         height: "100%",
-        width: "1000",
+        width: "800",
         bottomText: "",
         topText: "",
         animationSpeed: 1000,
