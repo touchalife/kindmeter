@@ -21,11 +21,12 @@ pubnub.subscribe({
         } else
         if (m.mc_gross) {
             var gross = parseFloat(m.mc_gross);
-            //gross = gross.toFixed(2);
-            total = total + gross;
-            App.current_value = total;
+            App.current_value = App.current_value + total;
             console.log(" Value increased " + App.current_value);
             $("#fixture").thermometer("setValue", App.current_value);
+            //gross = gross.toFixed(2);
+            //total = total + gross;
+            // App.current_value = total;
         }
 
     }
