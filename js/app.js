@@ -1,7 +1,8 @@
 var App = {};
 App.start_value = 0;
-App.goal_value = 25000;
+App.goal_value = 30000;
 App.current_value = 1000;
+var total = parseFloat("0");
 
 var pubnub = PUBNUB.init({
     publish_key: "pub-c-1b29544e-6e89-44c6-8163-a6fd0e9302f1",
@@ -12,20 +13,20 @@ var pubnub = PUBNUB.init({
 pubnub.subscribe({
     channel: "touch_a_life",
     message: function (m) {
-        console.log("GOT NOTIFICATION - > " + JSON.stringify(m));
 
-
-        if (m.action_type && m.action_type == 'reset') {
-            App.current_value = m.total;
+        if (m.message_type && m.message_type == "reset_value") {
+            App.current_value = parseFloat(m.value);
+            console.log("Meta Event received. Resetting counter " + App.current_value);
             $("#fixture").thermometer("setValue", App.current_value);
-            return;
-        }
-
-        if (m.amount) {
-            App.current_value = App.current_value + m.amount;
+        } else
+        if (m.mc_gross) {
+            var gross = parseFloat(m.mc_gross);
+            //gross = gross.toFixed(2);
+            total = total + gross;
+            App.current_value = total;
+            console.log(" Value increased " + App.current_value);
             $("#fixture").thermometer("setValue", App.current_value);
         }
-
 
     }
 });
@@ -50,7 +51,7 @@ function RGB2HTML(red, green, blue) {
 
 function init() {
     $("#fixture").thermometer({
-        startValue: 100,
+        startValue: 1000,
         height: "100%",
         width: "800",
         bottomText: "",
