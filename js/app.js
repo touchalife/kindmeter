@@ -11,16 +11,15 @@ var pubnub = PUBNUB.init({
 
 pubnub.subscribe({
     channel: "touch_a_life",
-    message: function (m) {
+    message: function(m) {
 
         if (m.message_type && m.message_type == "reset_value") {
             App.gross_total = parseFloat(m.value);
             console.log("Meta Event received. Resetting counter " + App.gross_total);
             $("#fixture").thermometer("setValue", App.gross_total);
-        } else
-        if (m.mc_gross) {
+        } else if (m.mc_gross) {
             var gross = parseFloat(m.mc_gross);
-            App.gross_total = App.gross_total + total;
+            App.gross_total = App.gross_total + gross;
             console.log(" Value increased " + App.gross_total);
             $("#fixture").thermometer("setValue", App.gross_total);
             //gross = gross.toFixed(2);
@@ -37,7 +36,7 @@ function getUrlParams(prop) {
         window.location.href.slice(window.location.href.indexOf("?") + 1)
     );
     var definitions = search.split("&");
-    definitions.forEach(function (val, key) {
+    definitions.forEach(function(val, key) {
         var parts = val.split("=", 2);
         params[parts[0]] = parts[1];
     });
@@ -61,12 +60,12 @@ function init() {
         minValue: 100,
         textColour: "#fff",
         // tickColour: '#fff',
-        liquidColour: function (value) {
+        liquidColour: function(value) {
             var grn = ~~((value / App.goal_value) * 255);
             var red = ~~(((App.goal_value - value) / App.goal_value) * 255);
             return RGB2HTML(red, grn, 0);
         },
-        valueChanged: function (value) {
+        valueChanged: function(value) {
             $("#value").text("$" + value.toFixed(2));
         }
     });
